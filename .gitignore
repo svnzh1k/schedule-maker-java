@@ -3,9 +3,7 @@ HELP.md
 /target
 !**/src/main/**/target/
 !**/src/test/**/target/
-docker-compose.yaml
-Dockerfile
-dump.sql
+
 ### STS ###
 .apt_generated
 .classpath

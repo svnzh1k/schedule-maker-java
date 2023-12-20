@@ -1,0 +1,21 @@
+version: '3'
+services:
+  database:
+    image: postgres:15.4
+    environment:
+      POSTGRES_DB: schedule_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+
+  api:
+    build: ../../../test
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/schedule_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123
